@@ -2,6 +2,7 @@
     package="com.flywith24.activityresult">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application>
         <provider
