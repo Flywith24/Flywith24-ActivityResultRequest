@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">ActivityResultDemo</string>
-    <string name="take_picture">拍照</string>
+    <string name="take_picture">拍照，返回图片path</string>
+    <string name="take_picture_preview">拍照，返回图片bitmap</string>
+    <string name="take_video">拍视频，返回视频path</string>
 </resources>
