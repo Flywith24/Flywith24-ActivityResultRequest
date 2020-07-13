@@ -1,10 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.flywith24.activityresult">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application>
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.flywith24.activityresult.fileprovider"
+            android:authorities="${applicationId}.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

@@ -24,9 +24,9 @@ const val EXPLAINED = "EXPLAINED"
  */
 inline fun ComponentActivity.requestPermission(
     permission: String,
-    crossinline granted: (permission: String) -> Unit = {},
     crossinline denied: (permission: String) -> Unit = {},
-    crossinline explained: (permission: String) -> Unit = {}
+    crossinline explained: (permission: String) -> Unit = {},
+    crossinline granted: (permission: String) -> Unit = {}
 ) {
     registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
         when {
@@ -45,9 +45,9 @@ inline fun ComponentActivity.requestPermission(
  */
 inline fun ComponentActivity.requestMultiplePermissions(
     vararg permissions: String,
-    crossinline allGranted: () -> Unit = {},
     crossinline denied: (List<String>) -> Unit = {},
-    crossinline explained: (List<String>) -> Unit = {}
+    crossinline explained: (List<String>) -> Unit = {},
+    crossinline allGranted: () -> Unit = {}
 ) {
     registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result: MutableMap<String, Boolean> ->
         //过滤 value 为 false 的元素并转换为 list
@@ -77,9 +77,9 @@ inline fun ComponentActivity.requestMultiplePermissions(
  */
 inline fun Fragment.requestPermission(
     permission: String,
-    crossinline granted: (permission: String) -> Unit = {},
     crossinline denied: (permission: String) -> Unit = {},
-    crossinline explained: (permission: String) -> Unit = {}
+    crossinline explained: (permission: String) -> Unit = {},
+    crossinline granted: (permission: String) -> Unit = {}
 
 ) {
     registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
@@ -99,9 +99,9 @@ inline fun Fragment.requestPermission(
  */
 inline fun Fragment.requestMultiplePermissions(
     vararg permissions: String,
-    crossinline allGranted: () -> Unit = {},
     crossinline denied: (List<String>) -> Unit = {},
-    crossinline explained: (List<String>) -> Unit = {}
+    crossinline explained: (List<String>) -> Unit = {},
+    crossinline allGranted: () -> Unit = {}
 ) {
     registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { result: MutableMap<String, Boolean> ->
         //过滤 value 为 false 的元素并转换为 list
