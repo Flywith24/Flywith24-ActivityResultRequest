@@ -1,6 +1,5 @@
 package com.flywith24.request
 
-import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -42,7 +41,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     fun pickContactClick(view: View) {
         pickContact { uri ->
             Log.i(TAG, "pick contact success uri = $uri")
-
         }
     }
 
@@ -50,7 +48,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
      * startActivityForResult
      */
     fun startActivityForResultClick(view: View) {
-        launchForResult(Intent(this, SecondActivity::class.java)) {
+        launchForResult<SecondActivity> {
             val location = it?.getStringExtra("Configs.LOCATION_RESULT")
             Log.i(TAG, "startActivityForResultClick: $location")
         }
