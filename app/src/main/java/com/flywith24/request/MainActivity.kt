@@ -52,6 +52,17 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             val location = it?.getStringExtra("Configs.LOCATION_RESULT")
             Log.i(TAG, "startActivityForResultClick: $location")
         }
+
+        /*
+         launchForResult<SecondActivity>(
+            setIntent = {
+                //配置请求 intent
+            },
+            onSuccess = {
+                val location = it?.getStringExtra("Configs.LOCATION_RESULT")
+                Log.i(TAG, "startActivityForResultClick: $location")
+            }
+        )*/
     }
 
     companion object {
