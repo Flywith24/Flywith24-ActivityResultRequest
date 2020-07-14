@@ -1,5 +1,14 @@
 # 最新的 Activity Result API
 
+## startActivityForResult
+```kotlin
+registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+    // 返回 intent
+	val intent = it.data
+}.launch(Intent(this, SecondActivity::class.java))
+```
+
+
 ## 请求单一权限
 
 ``` kotlin
