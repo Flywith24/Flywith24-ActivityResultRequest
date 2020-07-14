@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
      * startActivityForResult
      */
     fun startActivityForResultClick(view: View) {
-        launchForResult<SecondActivity>() {
+        launchForResult<SecondActivity> {
             val location = it?.getStringExtra("Configs.LOCATION_RESULT")
             Log.i(TAG, "startActivityForResultClick: $location")
         }
