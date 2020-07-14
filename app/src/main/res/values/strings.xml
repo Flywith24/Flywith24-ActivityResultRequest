@@ -4,4 +4,6 @@
     <string name="take_picture_preview">拍照，返回图片bitmap</string>
     <string name="take_video">拍视频，返回视频path</string>
     <string name="pick_contact">选择联系人，返回视频uri</string>
+    <string name="start_activity_for_result">startActivityForResult</string>
+    <string name="second_activity">SecondActivity</string>
 </resources>
