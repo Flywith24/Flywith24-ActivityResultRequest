@@ -13,10 +13,13 @@ import androidx.activity.result.contract.ActivityResultContracts
  * description
  */
 inline fun <reified T : Activity> ComponentActivity.launchForResult(
-    intent: Intent = Intent(this, T::class.java),
+    crossinline setIntent: (intent: Intent) -> Unit = {},
     crossinline onError: (resultCode: Int) -> Unit = {},
     crossinline onSuccess: (intent: Intent?) -> Unit = {}
 ) {
+    val intent = Intent(this, T::class.java)
+    //根据配置设置 intent
+    setIntent.invoke(intent)
     registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
         if (RESULT_OK == it.resultCode) onSuccess.invoke(it.data)
         else onError.invoke(it.resultCode)
