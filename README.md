@@ -1,4 +1,4 @@
-# 最新的 Activity Result API
+# 最新的 Activity Result API 使用
 
 ## startActivityForResult
 ```kotlin
@@ -82,4 +82,89 @@ registerForActivityResult(ActivityResultContracts.PickContact()) {
 	// 返回 uri
 }.launch()
 ```
+
+
+
+# 使用扩展函数封装后使用
+
+## startActivityForResult
+
+``` kotlin
+launchForResult<SecondActivity> {
+    val location = it?.getStringExtra("Configs.LOCATION_RESULT")
+    Log.i(TAG, "startActivityForResultClick: $location")
+}
+```
+
+
+
+## 请求单一权限
+
+``` kotlin
+permission(Manifest.permission.RECORD_AUDIO) {
+    granted = { permission ->
+
+    }
+    denied = { permission ->
+       
+    }
+    explained = { permission ->
+       
+    }
+}
+```
+
+
+
+## 请求多个权限
+
+``` kotlin
+permissions(Manifest.permission.WRITE_EXTERNAL_STORAGE , Manifest.permission.CAMERA) {
+    allGranted = {
+       
+    }
+    denied = {
+       
+    }
+    explained = {
+      
+    }
+}
+```
+
+
+
+## 打开相机拍照
+
+``` kotlin
+takePicture(BuildConfig.APPLICATION_ID) { path ->
+    Log.i(TAG, "take picture success path = $path")
+}
+```
+
+
+
+## 打开相机录像
+
+``` kotlin
+takeVideo(BuildConfig.APPLICATION_ID) { path ->
+    Log.i(TAG, "take video success path = $path")
+}
+```
+
+
+
+## 选择联系人
+
+``` kotlin
+pickContact { uri ->
+    Log.i(TAG, "pick contact success uri = $uri")
+}
+```
+
+
+
+
+
+
 
