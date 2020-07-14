@@ -1,13 +1,11 @@
 package com.flywith24.request
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.flywith24.activityresult.pickContact
-import com.flywith24.activityresult.takePicture
-import com.flywith24.activityresult.takePicturePreview
-import com.flywith24.activityresult.takeVideo
+import com.flywith24.activityresult.*
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
@@ -41,17 +39,24 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     /**
      * 选择联系人，返回 uri
      */
-    fun pckContactClick(view: View) {
+    fun pickContactClick(view: View) {
         pickContact { uri ->
             Log.i(TAG, "pick contact success uri = $uri")
 
         }
     }
 
+    /**
+     * startActivityForResult
+     */
+    fun startActivityForResultClick(view: View) {
+        launchForResult(Intent(this, SecondActivity::class.java)) {
+            val location = it?.getStringExtra("Configs.LOCATION_RESULT")
+            Log.i(TAG, "startActivityForResultClick: $location")
+        }
+    }
 
     companion object {
         private const val TAG = "MainActivity"
     }
-
-
 }
