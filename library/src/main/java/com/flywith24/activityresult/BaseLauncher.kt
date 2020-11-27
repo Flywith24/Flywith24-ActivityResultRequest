@@ -17,7 +17,7 @@ import androidx.lifecycle.LifecycleOwner
 abstract class BaseLauncher<I, O>(private val contract: ActivityResultContract<I, O>) :
     DefaultLifecycleObserver,
     ActivityResultCallback<O> {
-    protected lateinit var launcher: ActivityResultLauncher<I>
+    lateinit var launcher: ActivityResultLauncher<I>
 
     @CallSuper
     override fun onCreate(owner: LifecycleOwner) {
