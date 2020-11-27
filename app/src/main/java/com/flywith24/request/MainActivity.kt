@@ -9,7 +9,7 @@ import com.flywith24.activityresult.*
 
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
-    private val launcher by lazy { PictureLauncher() }
+    private val launcher by lazy { TakePictureLauncher() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,13 +1,9 @@
 package com.flywith24.activityresult
 
 import android.Manifest
-import android.content.Context
-import android.net.Uri
 import android.os.Environment
-import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
-import androidx.lifecycle.LifecycleOwner
 import java.io.File
 
 /**
@@ -16,20 +12,10 @@ import java.io.File
  * time   15:01
  * description
  */
-class PictureLauncher : BaseLauncher<Uri, Boolean>(ActivityResultContracts.TakePicture()) {
-    var onSuccess: (permission: String) -> Unit = {}
-    var onError: (permission: String) -> Unit = {}
+class TakePictureLauncher : BasePictureLauncher(ActivityResultContracts.TakePicture()) {
+    var onSuccess: (path: String) -> Unit = {}
+    var onError: (path: String) -> Unit = {}
     var path: String = ""
-    private val camera by lazy { PermissionLauncher() }
-    lateinit var context: Context
-
-    override fun onCreate(owner: LifecycleOwner) {
-        if (owner is ComponentActivity) {
-            context = owner
-            owner.lifecycle.addObserver(camera)
-        }
-        super.onCreate(owner)
-    }
 
     /**
      * 打开相机拍照，无需手动请求权限，内部已请求
