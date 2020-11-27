@@ -1,6 +1,7 @@
-package com.flywith24.activityresult
+package com.flywith24.activityresult.permission
 
 import androidx.activity.result.contract.ActivityResultContracts
+import com.flywith24.activityresult.BaseLauncher
 import com.flywith24.activityresult.dsl.permission.PermissionBuilder
 
 /**
