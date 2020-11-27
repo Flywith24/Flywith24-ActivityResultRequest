@@ -1,4 +1,4 @@
-package com.flywith24.activityresult
+package com.flywith24.activityresult.permission
 
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts

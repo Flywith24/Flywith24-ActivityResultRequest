@@ -2,8 +2,8 @@ package com.flywith24.activityresult.dsl.permission
 
 import androidx.activity.ComponentActivity
 import androidx.fragment.app.Fragment
-import com.flywith24.activityresult.requestMultiplePermissions
-import com.flywith24.activityresult.requestPermission
+import com.flywith24.activityresult.permission.requestMultiplePermissions
+import com.flywith24.activityresult.permission.requestPermission
 
 
 /**
