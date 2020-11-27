@@ -12,12 +12,14 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val launcher by lazy { TakePictureLauncher() }
     private val previewLauncher by lazy { TakePicturePreviewLauncher() }
     private val videoLauncher by lazy { TakeVideoLauncher() }
+    private val contactLauncher by lazy { PickContactLauncher() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycle.addObserver(launcher)
         lifecycle.addObserver(previewLauncher)
         lifecycle.addObserver(videoLauncher)
+        lifecycle.addObserver(contactLauncher)
     }
 
     /**
@@ -51,7 +53,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
      * 选择联系人，返回 uri
      */
     fun pickContactClick(view: View) {
-        pickContact { uri ->
+        contactLauncher.lunch { uri ->
             Log.i(TAG, "pick contact success uri = $uri")
         }
     }
