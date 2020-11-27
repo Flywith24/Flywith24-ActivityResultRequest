@@ -8,7 +8,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
 import androidx.core.content.FileProvider
 import com.flywith24.activityresult.dsl.permission.permission
-import com.flywith24.activityresult.dsl.permission.permissions
 import java.io.File
 
 /**
@@ -18,38 +17,6 @@ import java.io.File
  * description
  */
 
-/**
- * 打开相机拍照，无需手动请求权限，内部已请求
- * [onSuccess] 成功回调，返回图片路径
- */
-inline fun ComponentActivity.takePicture(
-    applicationId: String,
-    crossinline onError: (message: String) -> Unit = {},
-    crossinline onSuccess: (path: String) -> Unit = {}
-) {
-    //请求拍照权限
-    permissions(Manifest.permission.CAMERA) {
-        allGranted = {
-            val path =
-                "${getExternalFilesDir(DIRECTORY_PICTURES)?.absolutePath}/${System.currentTimeMillis()}.jpg"
-            val fileUri =
-                FileProvider.getUriForFile(
-                    this@takePicture,
-                    "${applicationId}.fileprovider",
-                    File(path)
-                )
-            registerForActivityResult(ActivityResultContracts.TakePicture()) {
-                if (it) onSuccess.invoke(path) else onError.invoke("")
-            }.launch(fileUri)
-        }
-        denied = {
-            onError.invoke("camera permission denied")
-        }
-        explained = {
-            onError.invoke("camera permission denied")
-        }
-    }
-}
 
 inline fun ComponentActivity.takePicturePreview(
     crossinline onError: (message: String) -> Unit = {},
@@ -72,7 +39,6 @@ inline fun ComponentActivity.takePicturePreview(
 }
 
 inline fun ComponentActivity.takeVideo(
-    applicationId: String,
     crossinline onError: (message: String) -> Unit = {},
     crossinline onSuccess: (path: String) -> Unit = {}
 ) {
@@ -84,7 +50,7 @@ inline fun ComponentActivity.takeVideo(
             val fileUri =
                 FileProvider.getUriForFile(
                     this@takeVideo,
-                    "${applicationId}.fileprovider",
+                    "${this@takeVideo.applicationContext}.chooseProvider",
                     File(path)
                 )
             registerForActivityResult(ActivityResultContracts.TakeVideo()) {

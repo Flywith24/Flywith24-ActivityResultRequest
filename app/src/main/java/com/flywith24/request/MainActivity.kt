@@ -1,18 +1,26 @@
 package com.flywith24.request
 
+import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.flywith24.activityresult.*
 
+
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
+    private val launcher by lazy { PictureLauncher() }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        lifecycle.addObserver(launcher)
+    }
 
     /**
      * 拍照，返回图片路径
      */
     fun takePictureClick(view: View) {
-        takePicture(BuildConfig.APPLICATION_ID) { path ->
+        launcher.lunch() { path ->
             Log.i(TAG, "take picture success path = $path")
         }
     }
@@ -30,7 +38,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
      * 拍视频，返回视频 path
      */
     fun takeVideoClick(view: View) {
-        takeVideo(BuildConfig.APPLICATION_ID) { path ->
+        takeVideo() { path ->
             Log.i(TAG, "take video success path = $path")
         }
     }
