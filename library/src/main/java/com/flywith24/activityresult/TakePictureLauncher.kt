@@ -1,6 +1,7 @@
 package com.flywith24.activityresult
 
 import android.Manifest
+import android.net.Uri
 import android.os.Environment
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
@@ -12,7 +13,8 @@ import java.io.File
  * time   15:01
  * description
  */
-class TakePictureLauncher : BasePictureLauncher(ActivityResultContracts.TakePicture()) {
+class TakePictureLauncher :
+    BasePictureLauncher<Uri, Boolean>(ActivityResultContracts.TakePicture()) {
     var onSuccess: (path: String) -> Unit = {}
     var onError: (path: String) -> Unit = {}
     var path: String = ""

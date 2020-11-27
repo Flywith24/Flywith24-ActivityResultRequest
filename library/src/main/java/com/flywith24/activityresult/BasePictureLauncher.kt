@@ -1,7 +1,6 @@
 package com.flywith24.activityresult
 
 import android.content.Context
-import android.net.Uri
 import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.lifecycle.LifecycleOwner
@@ -12,8 +11,8 @@ import androidx.lifecycle.LifecycleOwner
  * time   15:01
  * description
  */
-abstract class BasePictureLauncher(contract: ActivityResultContract<Uri, Boolean>) :
-    BaseLauncher<Uri, Boolean>(contract) {
+abstract class BasePictureLauncher<I, O>(contract: ActivityResultContract<I, O>) :
+    BaseLauncher<I, O>(contract) {
     val camera by lazy { PermissionLauncher() }
     lateinit var context: Context
 
