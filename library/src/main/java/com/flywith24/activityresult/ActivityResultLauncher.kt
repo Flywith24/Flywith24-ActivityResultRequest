@@ -2,10 +2,8 @@ package com.flywith24.activityresult
 
 import android.app.Activity
 import android.content.Intent
-import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.LifecycleOwner
 
 /**
  * @author yyz (杨云召)
@@ -17,14 +15,6 @@ class ActivityResultLauncher :
     BaseLauncher<Intent, ActivityResult>(ActivityResultContracts.StartActivityForResult()) {
     var onError: (resultCode: Int) -> Unit = {}
     var onSuccess: (intent: Intent?) -> Unit = {}
-
-    lateinit var activity: ComponentActivity
-    override fun onCreate(owner: LifecycleOwner) {
-        super.onCreate(owner)
-        if (owner is ComponentActivity) {
-            this.activity = owner
-        }
-    }
 
     inline fun <reified T : Activity> lunch(
         crossinline setIntent: (intent: Intent) -> Unit = {},

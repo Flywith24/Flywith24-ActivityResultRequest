@@ -1,5 +1,6 @@
 package com.flywith24.activityresult
 
+import android.app.Activity
 import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
@@ -18,10 +19,12 @@ abstract class BaseLauncher<I, O>(private val contract: ActivityResultContract<I
     DefaultLifecycleObserver,
     ActivityResultCallback<O> {
     lateinit var launcher: ActivityResultLauncher<I>
+    lateinit var activity: Activity
 
     @CallSuper
     override fun onCreate(owner: LifecycleOwner) {
         if (owner is ComponentActivity) {
+            activity = owner
             launcher = owner.registerForActivityResult(contract, this)
         }
     }

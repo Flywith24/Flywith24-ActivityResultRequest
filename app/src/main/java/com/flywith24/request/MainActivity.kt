@@ -1,11 +1,13 @@
 package com.flywith24.request
 
+import android.Manifest
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.flywith24.activityresult.*
+import com.flywith24.activityresult.permission.MultiPermissionLauncher
 
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
@@ -14,6 +16,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val videoLauncher by lazy { TakeVideoLauncher() }
     private val contactLauncher by lazy { PickContactLauncher() }
     private val launcher by lazy { ActivityResultLauncher() }
+    private val multiPermissionLauncher by lazy { MultiPermissionLauncher() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +25,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         lifecycle.addObserver(videoLauncher)
         lifecycle.addObserver(contactLauncher)
         lifecycle.addObserver(launcher)
+        lifecycle.addObserver(multiPermissionLauncher)
     }
 
     /**
@@ -81,7 +85,20 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         )
     }
 
+    fun requestMultiPermissions(view: View) {
+        multiPermissionLauncher.lunch(
+            arrayOf(
+                Manifest.permission.CAMERA,
+                Manifest.permission.READ_CONTACTS
+            )
+        ) {
+            Log.i(TAG, "requestMultiPermissions: 全部通过")
+        }
+
+    }
+
     companion object {
         private const val TAG = "MainActivity"
     }
+
 }
