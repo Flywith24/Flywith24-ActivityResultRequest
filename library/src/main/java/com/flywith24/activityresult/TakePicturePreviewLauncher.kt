@@ -38,7 +38,11 @@ class TakePicturePreviewLauncher :
         }
     }
 
-    override fun onActivityResult(result: Bitmap) {
-        onSuccess.invoke(result)
+    override fun onActivityResult(result: Bitmap?) {
+        if (result != null) {
+            onSuccess.invoke(result)
+        } else {
+            onError.invoke("result is null")
+        }
     }
 }

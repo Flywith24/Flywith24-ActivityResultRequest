@@ -26,7 +26,7 @@ abstract class BaseLauncher<I, O>(private val contract: ActivityResultContract<I
         }
     }
 
-    override fun onActivityResult(result: O) {
+    override fun onActivityResult(result: O?) {
 
     }
 }

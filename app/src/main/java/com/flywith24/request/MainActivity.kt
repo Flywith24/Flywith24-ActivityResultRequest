@@ -10,10 +10,14 @@ import com.flywith24.activityresult.*
 
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private val launcher by lazy { TakePictureLauncher() }
+    private val previewLauncher by lazy { TakePicturePreviewLauncher() }
+    private val videoLauncher by lazy { TakeVideoLauncher() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lifecycle.addObserver(launcher)
+        lifecycle.addObserver(previewLauncher)
+        lifecycle.addObserver(videoLauncher)
     }
 
     /**
@@ -29,7 +33,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
      * 拍照，返回图片 bitmap
      */
     fun takePicturePreviewClick(view: View) {
-        takePicturePreview() { bitmap ->
+        previewLauncher.lunch { bitmap ->
             findViewById<ImageView>(R.id.image).setImageBitmap(bitmap)
         }
     }
@@ -38,7 +42,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
      * 拍视频，返回视频 path
      */
     fun takeVideoClick(view: View) {
-        takeVideo() { path ->
+        videoLauncher.lunch { path ->
             Log.i(TAG, "take video success path = $path")
         }
     }

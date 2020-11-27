@@ -26,9 +26,9 @@ class PermissionLauncher :
         launcher.launch(permission)
     }
 
-    override fun onActivityResult(result: Boolean) {
+    override fun onActivityResult(result: Boolean?) {
         when {
-            result -> granted.invoke(permission)
+            result == true -> granted.invoke(permission)
             else -> explained.invoke(permission)
         }
     }
